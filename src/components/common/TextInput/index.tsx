@@ -74,7 +74,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
       height: hd("6%"),
       color: colors.text,
       fontSize: hd("1.6"),
-      fontFamily: "Nunito-Regular",
+      fontFamily: "Circle-Std",
       paddingHorizontal: 10,
       flex: 1,
       backgroundColor: colors.white,

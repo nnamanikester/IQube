@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import {
   ScrollView,
@@ -8,7 +7,7 @@ import {
   SafeAreaView,
   ViewProps,
 } from "react-native";
-import { widthPercentageToDP as wd } from "react-native-responsive-screen";
+import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from "react-redux";
 import { Clickable } from "../Clickable";
 import { Icon } from "../Icon";
@@ -51,8 +50,6 @@ export const Layout: React.FC<LayoutProps> = ({
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingHorizontal: wd("4.5%"),
-      backgroundColor: colors.background,
     },
     fab: {
       position: "absolute",
@@ -91,11 +88,22 @@ export const Layout: React.FC<LayoutProps> = ({
     <>
       {noScroll ? (
         <SafeAreaView style={{ flex: 1 }}>
-          <View style={[styles.container, style]}>{children}</View>
+          <LinearGradient
+            style={[styles.container, style]}
+            colors={['#c0faf7', '#f9e8e8', '#faf9f9', '#f8eac5']}
+          >
+            <View style={[styles.container, style]}>
+                {children}
+            </View>
+          </LinearGradient>
         </SafeAreaView>
       ) : (
         <>
-          <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
+              <LinearGradient
+                style={[styles.container, style]}
+                colors={['#c0faf7', '#f9e8e8', '#faf9f9', '#f8eac5']}
+              >
             <ScrollView
               ref={scroll}
               refreshControl={
@@ -131,7 +139,8 @@ export const Layout: React.FC<LayoutProps> = ({
               >
                 <Icon name="md-arrow-up" color={colors.white} size={30} />
               </Clickable>
-            )}
+                )}
+            </LinearGradient>
           </SafeAreaView>
         </>
       )}

@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hd,
   widthPercentageToDP as wd,
 } from "react-native-responsive-screen";
+import { LinearGradient } from 'expo-linear-gradient';
 import { Clickable, ClickableProps } from "../Clickable";
 import { ColorsState } from "<root>/states/colors/types";
 import { useSelector } from "react-redux";
@@ -69,17 +70,12 @@ const StyledButton: React.FC<StyledButtonProps> = styled(Clickable).attrs<Styled
   // onClick: null,
   activeOpacity: type === 'disabled' ? 1 : 0.8,
 }))<StyledButtonProps>`
-  border-radius: 6px;
+  border-radius: 15px;
   height: ${hd("6%")}px;
   align-self: center;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-  background-color: ${({ colors, type }) => type === 'disabled'
-    ? colors.lightPrimary : type === 'outline'
-      ? colors.white : type === 'ghost'
-        ? colors.background : colors.primary
-  };
   elevation: ${({ type }) => type === 'outline' || type === 'normal' ? '2' : '0'};
   border-width: ${({ type }) => type === 'outline' ? '1px' : '0'};
   border-color: ${({ type, colors }) => type === 'outline' ? colors.primary : 'transparent'};
@@ -114,11 +110,13 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const color = useSelector((state: any) => state.colors);
 
   return (
-    <StyledButton colors={color} {...props} onClick={props.type === 'disabled' ? null : props.onClick}>
-      {props.iconLeft ? <IconLeft colors={color}>{props.iconLeft}</IconLeft> : null}
-      {props.children}
-      {props.iconRight ? <IconRight colors={color}>{props.iconRight}</IconRight> : null}
-    </StyledButton>
+    <LinearGradient style={{ borderRadius: 15 }} colors={[color.lightPrimary, color.primary]}>
+      <StyledButton colors={color} {...props} onClick={props.type === 'disabled' ? undefined : props.onClick}>
+        {props.iconLeft ? <IconLeft colors={color}>{props.iconLeft}</IconLeft> : null}
+        {props.children}
+        {props.iconRight ? <IconRight colors={color}>{props.iconRight}</IconRight> : null}
+      </StyledButton>
+    </LinearGradient>
   );
 }
 

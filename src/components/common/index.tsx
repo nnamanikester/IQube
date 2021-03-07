@@ -12,7 +12,6 @@ export * from "./ListItem";
 export * from "./Loading";
 export * from "./Modal";
 export * from "./Option";
-export * from "./PinInput";
 export * from "./Row";
 export * from "./Spacer";
 export * from "./Switch";

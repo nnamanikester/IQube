@@ -1,31 +1,31 @@
 import * as React from 'react';
-import * as UI from '<common>/index';
+import * as UI from '<components>/common'
 import { connect } from "react-redux";
 import { ColorsState } from "<root>/states/colors/types";
 import { IRootState } from "<root>/states";
 
-export interface LoginScreenProps {
+export interface RegisterScreenProps {
   colors: ColorsState,
 }
  
-export interface LoginScreenState {
+export interface RegisterScreenState {
   
 }
  
-class LoginScreen extends React.Component<LoginScreenProps, LoginScreenState> {
-  constructor(props: LoginScreenProps) {
+class RegisterScreen extends React.Component<RegisterScreenProps, RegisterScreenState> {
+  constructor(props: RegisterScreenProps) {
     super(props);
     this.state = { };
   }
   render() { 
     return (
       <UI.Layout>
-        <UI.Text h1>Login Screen</UI.Text>
+        <UI.Text>Register Screen</UI.Text>
       </UI.Layout>
     );
   }
 }
-
+ 
 const mapStateToProps = (state: IRootState) => {
   return {
     colors: state.colors,
@@ -33,4 +33,4 @@ const mapStateToProps = (state: IRootState) => {
   };
 };
 
-export default connect(mapStateToProps)(LoginScreen);
+export default connect(mapStateToProps)(RegisterScreen);

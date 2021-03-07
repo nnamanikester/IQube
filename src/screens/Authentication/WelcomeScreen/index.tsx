@@ -17,7 +17,7 @@ class WelcomeScreen extends React.Component<WelcomeScreenProps, WelcomeScreenSta
   render() { 
     return (
       <UI.Layout>
-        <UI.Text note>Welcome Screen</UI.Text>
+        <UI.Text>Welcome Screen</UI.Text>
       </UI.Layout>
     );
   }

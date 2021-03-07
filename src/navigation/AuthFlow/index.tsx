@@ -3,8 +3,10 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import WelcomeScreen from "<root>/screens/Authentication/WelcomeScreen";
-import LoginScreen from "<root>/screens/Authentication/LoginScreen";
+import WelcomeScreen from "<screens>/Authentication/WelcomeScreen";
+import LoginScreen from "<screens>/Authentication/LoginScreen";
+import RegisterScreen from "<screens>/Authentication/RegisterScreen";
+import OnboardingScreen from "<screens>/OnboardingScreen";
 
 const Stack = createStackNavigator();
 
@@ -32,7 +34,8 @@ class AuthFlow extends React.Component<AuthFlowProps, AuthFlowState> {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       >
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
     );

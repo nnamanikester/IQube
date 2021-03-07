@@ -2,7 +2,6 @@ import React from 'react';
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import Thunk from "redux-thunk";
-import Constants from "expo-constants";
 import AppLoading from "expo-app-loading";
 import { StatusBar } from "react-native";
 import { listenOrientationChange as lor } from "react-native-responsive-screen";
@@ -12,13 +11,7 @@ import NavigationFlow from '<navigation>/index';
 
 
 const customFonts = {
-  "Lato-Regular": require("./assets/fonts/Lato/Lato-Regular.ttf"),
-  "Lato-Bold": require("./assets/fonts/Lato/Lato-Bold.ttf"),
-  "Lato-Black": require("./assets/fonts/Lato/Lato-Black.ttf"),
-  "Nunito-Regular": require("./assets/fonts/Nunito/Nunito-Regular.ttf"),
-  "Nunito-SemiBold": require("./assets/fonts/Nunito/Nunito-SemiBold.ttf"),
-  "Nunito-Bold": require("./assets/fonts/Nunito/Nunito-Bold.ttf"),
-  "Nunito-Black": require("./assets/fonts/Nunito/Nunito-Black.ttf"),
+  "Circle-Std": require("./assets/fonts/cirlce-std.otf"),
 };
 
 export interface AppProps {

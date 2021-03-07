@@ -16,7 +16,6 @@ export interface TextProps extends TXTProps {
   h2?: boolean,
   h3?: boolean,
   bold?: boolean,
-  title?: boolean,
   color?: string,
   note?: boolean,
 }
@@ -28,12 +27,12 @@ export const Text: React.FC<TextProps> = ({
   h1=false,
   h2=false,
   h3=false,
-  title=false,
   bold=false,
-  note=false,
-  size=24,
+  note = false,
+  size,
   children,
   color,
+  style,
 }) => {
   const colors = useSelector((state: any) => state.colors);
 
@@ -41,27 +40,22 @@ export const Text: React.FC<TextProps> = ({
     text: {
       color: colors.text,
       fontSize: 17,
-      fontFamily: "Nunito-Regular",
+      lineHeight: 24,
+      fontFamily: "Circle-Std",
     },
   });
 
   const textStyle: TextStyle = {};
 
   if (h1) {
-    textStyle.fontSize = hd("3.5%");
-    textStyle.fontFamily = "Lato-Black";
-    textStyle.lineHeight = hd("5");
+    textStyle.fontSize = hd('2.7%');
+    textStyle.color = colors.black;
   } else if (h2) {
-    textStyle.fontFamily = "Lato-Black";
-    textStyle.fontSize = hd("3.2%");
-    textStyle.lineHeight = hd("3.7%");
+    textStyle.fontSize = hd("2.3%");
+    textStyle.color = colors.black;
   } else if (h3) {
-    textStyle.fontFamily = "Lato-Black";
-    textStyle.fontSize = hd("2.3%");
-    textStyle.lineHeight = hd("3%");
-  } else if (title) {
-    textStyle.fontFamily = "Lato-Black";
-    textStyle.fontSize = hd("2.3%");
+    textStyle.fontSize = hd("1.8%");
+    textStyle.color = colors.black;
   } else if (note) {
     textStyle.color = colors.inactive;
     textStyle.fontSize = wd("2.5%");
@@ -69,23 +63,18 @@ export const Text: React.FC<TextProps> = ({
   } else if (size) {
     textStyle.fontSize = size;
     textStyle.lineHeight = size + 5;
-  } else {
-    textStyle.fontSize = 17;
-    textStyle.lineHeight = wd("4.5%");
   }
 
   if (color) {
     textStyle.color = color;
-  } else {
-    textStyle.color = colors.text;
   }
 
   if (bold) {
-    textStyle.fontFamily = "Nunito-Bold";
+    textStyle.fontWeight = '700';
   }
 
   return (
-    <TXT style={{ ...styles.text, ...textStyle }}>
+    <TXT style={[ styles.text, textStyle, style ]}>
       {children}
     </TXT>
   );
