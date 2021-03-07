@@ -7,6 +7,18 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true
+    "strict": true,
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "paths": {
+      "<assets>/*": ["assets/*"],
+      "<root>/*": ["src/*"],
+      "<components>/*": ["src/components/*"],
+      "<common>/*": ["src/components/common/*"],
+      "<screens>/*": ["src/screens/*"],
+      "<states>/*": ["src/states/*"],
+      "<constants>/*": ["src/constants/*"],
+      "<navigation>/*": ["src/navigation/*"],
+    }
   }
 }
