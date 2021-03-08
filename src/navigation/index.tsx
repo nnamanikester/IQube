@@ -4,11 +4,15 @@ import { connect } from "react-redux";
 import AppLoading from "expo-app-loading";
 import MainFlow from "./MainFlow";
 import AuthFlow from "./AuthFlow";
-import { AuthState } from "<root>/states/auth/types";
+import { AuthState, IUserPayload } from "<root>/states/auth/types";
 import { IRootState } from "<root>/states";
+import AsyncStorage from "@react-native-community/async-storage";
+import { STORAGE_USER } from "<root>/constants";
+import { setUser } from "<root>/states/actions";
 
 export interface NavigationFlowProps {
   auth: AuthState,
+  setUser: (user: IUserPayload) => void,
 }
  
 export interface NavigationFlowState {
@@ -24,6 +28,12 @@ class NavigationFlow extends React.Component<NavigationFlowProps, NavigationFlow
   }
 
   async componentDidMount() {
+    const { setUser } = this.props;
+
+    const user: any = await AsyncStorage.getItem(STORAGE_USER);
+    if (user) {
+      setUser(JSON.parse(user));
+    }
   }
 
   render() {
@@ -51,4 +61,4 @@ const mapStateToProps = (state: IRootState) => {
   };
 };
 
-export default connect(mapStateToProps)(NavigationFlow);
+export default connect(mapStateToProps, { setUser })(NavigationFlow);

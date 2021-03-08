@@ -9,8 +9,8 @@ export function setUser(user: IUserPayload): (dispatch: any) => Promise<AuthActi
   };
 }
 
-export function logOut(mode: boolean): (dispatch: any) => Promise<AuthActionTypes> {
-  return async (dispatch: any): Promise<AuthActionTypes> => {
+export function logOut(mode: boolean): any {
+  return async (dispatch: any): Promise<void> => {
     await AsyncStorage.clear();
     await AsyncStorage.setItem(STORAGE_DARK_MODE, `${mode}`);
     return dispatch({ type: LOG_OUT });

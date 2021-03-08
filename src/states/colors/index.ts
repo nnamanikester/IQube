@@ -1,12 +1,13 @@
 import { CHANGE_TO_DARK_MODE, CHANGE_TO_LIGHT_MODE, ColorActionType, ColorsState } from "./types";
 
 const dark: ColorsState = {
+  background: "#FAF9F9",
   primary: "#3580FF",
   lightPrimary: "#6FA4FF",
   black: "#001029",
   white: "#FFFFFF",
   text: "#828282",
-  grey: "#979797",
+  grey: "#BDBDBD",
   lightGrey: "#F2F2F2",
   inactive: "#E0E0E0",
   danger: "#EB5757",
@@ -15,12 +16,13 @@ const dark: ColorsState = {
 }
 
 const light: ColorsState = {
+  background: "#FAF9F9",
   primary: "#3580FF",
   lightPrimary: "#6FA4FF",
   black: "#001029",
   white: "#FFFFFF",
   text: "#828282",
-  grey: "#979797",
+  grey: "#BDBDBD",
   lightGrey: "#F2F2F2",
   inactive: "#E0E0E0",
   danger: "#EB5757",

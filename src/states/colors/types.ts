@@ -10,6 +10,7 @@ export interface IChangeToLightModeAction {
 }
 
 export interface ColorsState {
+  background: string,
   primary: string,
   lightPrimary: string,
   black: string,

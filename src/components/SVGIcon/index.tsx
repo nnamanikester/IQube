@@ -50,6 +50,12 @@ const SVGIcon: React.FC<SVGIconProps> = ({ name, size, color, style, width, heig
     case "fan-box":
       Icon = require("./FanBox").default;
       break;
+    case "welcome":
+      Icon = require("./Welcome").default;
+      break;
+    case "chat":
+      Icon = require("./Chat").default;
+      break;
     default:
       Icon = () => <UI.Icon name="question" type="AntDesign" color={colors.danger} />;
       break;
