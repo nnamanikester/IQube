@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform, KeyboardAvoidingView } from 'react-native';
 import * as UI from '<common>/index';
 import { connect } from "react-redux";
 import { ColorsState } from "<root>/states/colors/types";
@@ -132,9 +132,8 @@ class LoginScreen extends React.Component<LoginScreenProps, LoginScreenState> {
               </UI.Block>
             </UI.Clickable>
           </UI.Block>
-
-          <UI.Spacer size={50} />
         </UI.Layout>
+        
         <UI.Block style={styles.bottomImage}>
           <SVGIcon name="payment-1" size={wd('100%')} />
         </UI.Block>
