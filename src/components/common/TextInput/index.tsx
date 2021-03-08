@@ -14,6 +14,7 @@ import {
   TextInputFocusEventData
 } from "react-native";
 import { heightPercentageToDP as hd } from "react-native-responsive-screen";
+import { Text } from "../Text";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -22,18 +23,19 @@ if (Platform.OS === "android") {
 }
 
 export interface TextInputProps extends TIProps {
-  password: boolean,
-  iconRight: React.ReactNode,
-  iconLeft: React.ReactNode,
-  error: boolean,
-  type: 'normal' | 'disabled' | 'outline' | 'ghost',
-  shape: 'normal' | 'rounded',
-  rows: number,
-  containerStyle: ViewStyle,
+  password?: boolean,
+  iconRight?: React.ReactNode,
+  iconLeft?: React.ReactNode,
+  error?: boolean,
+  type?: 'normal' | 'disabled' | 'outline' | 'ghost',
+  shape?: 'normal' | 'rounded',
+  rows?: number,
+  containerStyle?: ViewStyle,
 }
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
   const colors = useSelector((state: any) => state.colors);
+  const [active, setActive] = React.useState(false);
   const {
     onFocus,
     onBlur,
@@ -46,6 +48,8 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
     type,
     shape,
     containerStyle,
+    placeholder,
+    value,
   } = props;
   
   let iconLeftStyle: ViewStyle = {
@@ -56,7 +60,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   };
   const errorStyle: TextStyle = error ? { color: colors.danger, borderColor: colors.danger } : {};
   let shapeStyle: ViewStyle = {
-    borderRadius: shape === 'rounded' ? 50 : shape === 'normal' ? 5 : 5,
+    borderRadius: shape === 'rounded' ? 50 : shape === 'normal' ? 15 : 15,
   }
   let typeStyle: TextStyle = {};
   let editable = true;
@@ -65,17 +69,24 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
     container: {
       alignItems: "center",
       justifyContent: "center",
-      flexDirection: "row",
+      flexDirection: "row", 
+    },
+    floatingLabel: {
+      position: 'absolute',
+      top: 8,
+      zIndex: 999,
+      paddingLeft: iconLeft ? 50 : 10,
     },
     input: {
       borderWidth: 1.5,
       borderColor: colors.inactive,
-      borderRadius: 5,
-      height: hd("6%"),
-      color: colors.text,
+      borderRadius: 15,
+      height: hd("7%"),
+      color: colors.black,
       fontSize: hd("1.6"),
       fontFamily: "Circle-Std",
       paddingHorizontal: 10,
+      paddingTop: active || value ? 15 : 0,
       flex: 1,
       backgroundColor: colors.white,
     },
@@ -94,8 +105,6 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
       zIndex: 10,
     },
   });
-
-  const [active, setActive] = React.useState(false);
 
   switch (type) {
     case "disabled":
@@ -118,7 +127,6 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   }
 
   const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    LayoutAnimation.easeInEaseOut();
     if (onFocus) {
       onFocus(e);
     }
@@ -126,15 +134,19 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   };
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    LayoutAnimation.easeInEaseOut();
     if (onBlur) {
       onBlur(e);
     }
     return setActive(false);
   };
+  
+  React.useEffect(() => {
+    LayoutAnimation.easeInEaseOut();
+  }, [active]);
 
   return (
-    <View style={{ marginTop: active ? 5 : 0, ...containerStyle }}>
+    <View style={{ ...containerStyle }}>
+      {active || value ? <Text style={styles.floatingLabel} size={12}>{placeholder}</Text> : null}
       <View style={{ ...styles.container }}>
         {iconLeft ? (
           <View style={{ ...styles.iconLeft }}>{iconLeft}</View>
@@ -146,7 +158,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
           secureTextEntry={password}
           numberOfLines={rows}
           textBreakStrategy="highQuality"
-          placeholderTextColor={colors.grey}
+          placeholderTextColor={active ? 'transparent' : colors.black}
           editable={editable}
           style={{
             ...styles.input,
@@ -155,15 +167,13 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
             ...errorStyle,
             ...typeStyle,
             ...shapeStyle,
-            borderColor: active
-              ? colors.primary
-              : error
+            borderColor: error
               ? colors.danger
               : colors.inactive,
           }}
           {...props}
         />
-        {iconRight ? (
+        {iconRight && value ? (
           <View style={{ ...styles.iconRight }}>{iconRight}</View>
         ) : null}
       </View>

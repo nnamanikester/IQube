@@ -16,7 +16,6 @@ export interface BlockProps extends ViewProps {
   height?: number | string,
   backgroundColor?: string,
   absolute?: boolean,
-  styles?: object,
 }
 
 const Block: React.FC<BlockProps> = ({
@@ -34,7 +33,7 @@ const Block: React.FC<BlockProps> = ({
   height,
   backgroundColor,
   absolute,
-  styles,
+  style,
 }) => {
   let blockStyles: ViewStyle = {};
 
@@ -100,7 +99,7 @@ const Block: React.FC<BlockProps> = ({
 
   return (
     <>
-      <View style={[styless.block, blockStyles, styles]}>{children}</View>
+      <View style={[styless.block, blockStyles, style]}>{children}</View>
     </>
   );
 };

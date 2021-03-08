@@ -15,8 +15,9 @@ export interface ClickableProps extends TouchableOpacityProps {
  * create a button or any other clickable. Accepts all react native TouchableOpacity
  * props except `onPress` and `activeOpacity`. `onPress` is replaced with `onClick`
  */
-export const Clickable: React.FC<ClickableProps> = styled.TouchableOpacity.attrs<ClickableProps>(({ onClick }) => ({
+export const Clickable: React.FC<ClickableProps> = styled.TouchableOpacity.attrs<ClickableProps>(({ onClick, style }) => ({
   onPress: onClick ? () => onClick() : null,
   hitSlop: { top: 20, bottom: 20, left: 20, right: 20 },
   activeOpacity: 0.8,
+  style: style,
 }))<ClickableProps>``;

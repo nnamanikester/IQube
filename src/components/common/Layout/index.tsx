@@ -6,6 +6,7 @@ import {
   View,
   SafeAreaView,
   ViewProps,
+  KeyboardAvoidingView,
 } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from "react-redux";
@@ -88,59 +89,63 @@ export const Layout: React.FC<LayoutProps> = ({
     <>
       {noScroll ? (
         <SafeAreaView style={{ flex: 1 }}>
-          <LinearGradient
-            style={[styles.container, style]}
-            colors={['#c0faf7', '#f9e8e8', '#faf9f9', '#f8eac5']}
-          >
-            <View style={[styles.container, style]}>
-                {children}
-            </View>
-          </LinearGradient>
+          <KeyboardAvoidingView style={{ flex: 1 }}>
+            <LinearGradient
+              style={[styles.container, style]}
+              colors={['#c0faf7', '#f9e8e8', '#faf9f9', '#f8eac5']}
+              >
+              <View style={[styles.container, style]}>
+                  {children}
+              </View>
+            </LinearGradient>
+          </KeyboardAvoidingView>
         </SafeAreaView>
       ) : (
         <>
-            <SafeAreaView style={{ flex: 1 }}>
+          <SafeAreaView style={{ flex: 1 }}>
+            <KeyboardAvoidingView style={{ flex: 1 }}>
               <LinearGradient
                 style={[styles.container, style]}
                 colors={['#c0faf7', '#f9e8e8', '#faf9f9', '#f8eac5']}
               >
-            <ScrollView
-              ref={scroll}
-              refreshControl={
-                <RefreshControl
-                  colors={[colors.primary]}
-                  onRefresh={onRefresh}
-                  refreshing={refreshing}
-                  progressBackgroundColor="#fff"
-                />
-              }
-              scrollEventThrottle={400}
-              stickyHeaderIndices={[...itemsToFloat]}
-              showsVerticalScrollIndicator={false}
-              onScroll={({ nativeEvent }) => {
-                if (isCloseToBottom(nativeEvent)) {
-                  onEndReached();
-                }
-                if (shouldShowScrollToTop(nativeEvent)) {
-                  setShowScrollToTop(true);
-                } else {
-                  setShowScrollToTop(false);
-                }
-              }}
-              bounces
-              style={[ styles.container, style]}
-            >
-              {children}
-            </ScrollView>
-            {showScrollToTop && (
-              <Clickable
-                onClick={() => scroll?.scrollTo({ y: 0, animated: true })}
-                style={styles.fab}
-              >
-                <Icon name="md-arrow-up" color={colors.white} size={30} />
-              </Clickable>
+                <ScrollView
+                  ref={scroll}
+                  refreshControl={
+                    <RefreshControl
+                      colors={[colors.primary]}
+                      onRefresh={onRefresh}
+                      refreshing={refreshing}
+                      progressBackgroundColor="#fff"
+                    />
+                  }
+                  scrollEventThrottle={400}
+                  stickyHeaderIndices={[...itemsToFloat]}
+                  showsVerticalScrollIndicator={false}
+                  onScroll={({ nativeEvent }) => {
+                    if (isCloseToBottom(nativeEvent)) {
+                      onEndReached();
+                    }
+                    if (shouldShowScrollToTop(nativeEvent)) {
+                      setShowScrollToTop(true);
+                    } else {
+                      setShowScrollToTop(false);
+                    }
+                  }}
+                  bounces
+                  style={[ styles.container, style ]}
+                  >
+                  {children}
+                </ScrollView>
+                {showScrollToTop && (
+                  <Clickable
+                  onClick={() => scroll?.scrollTo({ y: 0, animated: true })}
+                    style={styles.fab}
+                    >
+                    <Icon name="md-arrow-up" color={colors.white} size={30} />
+                  </Clickable>
                 )}
-            </LinearGradient>
+              </LinearGradient>
+            </KeyboardAvoidingView>
           </SafeAreaView>
         </>
       )}

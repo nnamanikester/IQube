@@ -19,8 +19,8 @@ export const Switch: React.FC<SwitchProps> = (props) => {
 
   return (
     <SW
-      trackColor={{ true: colors.primary, false: colors.inactive }}
-      thumbColor={colors.primary}
+      trackColor={{ true: colors.warning, false: colors.inactive }}
+      thumbColor={colors.white}
       {...props}
     />
   );

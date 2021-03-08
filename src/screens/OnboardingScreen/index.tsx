@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import Swiper from "react-native-swiper";
 import { connect } from "react-redux";
 import {
@@ -78,9 +78,11 @@ class OnboardingScreen extends React.Component<OnboardingScreenProps, Onboarding
           </UI.Block>
 
           <Swiper
+            dot={<View style={styles.dot} />}
+            activeDot={<View style={styles.activeDot} />}
+            paginationStyle={styles.dotContainer}
             loop={false}
             bounces
-            showsPagination={false}
             onIndexChanged={(i) => this.setState({ index: i })}
             ref={this.swiper}
             height={hd("70%")}
