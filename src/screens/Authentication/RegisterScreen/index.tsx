@@ -109,7 +109,7 @@ class RegisterScreen extends React.Component<RegisterScreenProps, RegisterScreen
 
             <UI.Spacer medium />
 
-            <UI.Button>
+            <UI.Button onClick={() => navigation.navigate('EmailVerification')}>
               <UI.Text color={colors.white}>Sign up</UI.Text>
             </UI.Button>
           </UI.Block>

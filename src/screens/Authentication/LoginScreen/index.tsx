@@ -4,17 +4,20 @@ import * as UI from '<common>/index';
 import { connect } from "react-redux";
 import { ColorsState } from "<root>/states/colors/types";
 import { IRootState } from "<root>/states";
+import { setUser } from '<states>/auth/actions';
 import SVGIcon from '<components>/SVGIcon';
 import {
   widthPercentageToDP as wd
 } from 'react-native-responsive-screen';
 import styles from './styles';
+import { IUserPayload } from '<root>/states/auth/types';
 
 const isIOS = Platform.OS === 'ios';
 export interface LoginScreenProps {
   colors: ColorsState,
   isDark: boolean,
   navigation: any,
+  setUser: (user: IUserPayload) => void,
 }
  
 export interface LoginScreenState {
@@ -35,7 +38,7 @@ class LoginScreen extends React.Component<LoginScreenProps, LoginScreenState> {
     };
   }
   render() {
-    const { isDark, colors, navigation } = this.props;
+    const { isDark, colors, navigation, setUser } = this.props;
     const { email, password, showPassword, remember } = this.state;
 
     return (
@@ -109,7 +112,7 @@ class LoginScreen extends React.Component<LoginScreenProps, LoginScreenState> {
 
             <UI.Spacer medium />
 
-            <UI.Button>
+            <UI.Button onClick={() => setUser({ email: 'user@email.com' })}>
               <UI.Text color={colors.white}>Login</UI.Text>
             </UI.Button>
           </UI.Block>
@@ -147,4 +150,4 @@ const mapStateToProps = (state: IRootState) => {
   };
 };
 
-export default connect(mapStateToProps)(LoginScreen);
+export default connect(mapStateToProps, { setUser })(LoginScreen);

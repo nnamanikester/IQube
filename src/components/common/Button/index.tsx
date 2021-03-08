@@ -71,7 +71,7 @@ const StyledButton: React.FC<StyledButtonProps> = styled(Clickable).attrs<Styled
   activeOpacity: type === 'disabled' ? 1 : 0.8,
 }))<StyledButtonProps>`
   border-radius: 15px;
-  height: ${hd("6%")}px;
+  height: ${hd("7%")}px;
   align-self: center;
   align-items: center;
   justify-content: space-around;

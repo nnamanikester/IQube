@@ -3,9 +3,12 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import WelcomeScreen from "<screens>/Authentication/WelcomeScreen";
 import LoginScreen from "<screens>/Authentication/LoginScreen";
 import RegisterScreen from "<screens>/Authentication/RegisterScreen";
+import EmailVerificationScreen from "<screens>/Authentication/EmailVerificationScreen";
+import PhoneVerificationScreen from "<screens>/Authentication/PhoneVerificationScreen";
+import ForgotPasswordScreen from "<screens>/Authentication/ForgotPasswordScreen";
+import PasswordSentScreen from "<screens>/Authentication/PasswordSentScreen";
 import OnboardingScreen from "<screens>/OnboardingScreen";
 
 const Stack = createStackNavigator();
@@ -37,6 +40,10 @@ class AuthFlow extends React.Component<AuthFlowProps, AuthFlowState> {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="EmailVerification" component={EmailVerificationScreen} />
+        <Stack.Screen name="PhoneVerification" component={PhoneVerificationScreen} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen name="PasswordSent" component={PasswordSentScreen} />
       </Stack.Navigator>
     );
   }

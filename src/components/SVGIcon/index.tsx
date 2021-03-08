@@ -38,6 +38,18 @@ const SVGIcon: React.FC<SVGIconProps> = ({ name, size, color, style, width, heig
     case "google":
       Icon = require("./Google").default;
       break;
+    case "lock-1":
+      Icon = require("./Lock1").default;
+      break;
+    case "lock-2":
+      Icon = require("./Lock2").default;
+      break;
+    case "umbrella":
+      Icon = require("./Umbrella").default;
+      break;
+    case "fan-box":
+      Icon = require("./FanBox").default;
+      break;
     default:
       Icon = () => <UI.Icon name="question" type="AntDesign" color={colors.danger} />;
       break;

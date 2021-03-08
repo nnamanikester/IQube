@@ -50,6 +50,7 @@ export const Text: React.FC<TextProps> = ({
   if (h1) {
     textStyle.fontSize = hd('2.7%');
     textStyle.color = colors.black;
+    textStyle.lineHeight = hd('3.5%');
   } else if (h2) {
     textStyle.fontSize = hd("2.3%");
     textStyle.color = colors.black;
